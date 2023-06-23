@@ -1,9 +1,10 @@
 module.exports = {
   extends: ['@commitlint/config-conventional'],
+  // 校验规则
   rules: {
     'type-enum': [
       2,
-      'alwasy',
+      'always',
       [
         'feat',
         'fix',
@@ -21,7 +22,7 @@ module.exports = {
     'type-empty': [0],
     'scope-empty': [0],
     'scope-case': [0],
-    'subject-ful1-stop': [0, 'never'],
+    'subject-full-stop': [0, 'never'],
     'subject-case': [0, 'never'],
     'header-max-length': [0, 'always', 72],
   },

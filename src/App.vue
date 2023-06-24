@@ -10,9 +10,20 @@
 
 <script setup lang="ts">
 import { Plus, Edit, Delete } from '@element-plus/icons-vue'
-
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
+import request from '@/utils/request'
 const str = ref('I love You!')
+
+onMounted(() => {
+  request({
+    url: '/user/login',
+    method: 'post',
+    data: {
+      username: 'admin',
+      password: '123456',
+    },
+  })
+})
 </script>
 
 <style scoped lang="scss">

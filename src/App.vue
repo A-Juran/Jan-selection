@@ -1,21 +1,26 @@
 <template>
   <div class="box">
+    <el-button :icon="Plus">Default</el-button>
+    <el-button type="success" :icon="Edit">编辑</el-button>
+    <el-button type="danger" :icon="Delete">删除</el-button>
     <h1>{{ str }}</h1>
+    <svg-icon name="start" width="32px" height="32px"></svg-icon>
   </div>
 </template>
 
 <script setup lang="ts">
+import { Plus, Edit, Delete } from '@element-plus/icons-vue'
+
 import { ref } from 'vue'
-const str: string = ref('I love You!')
+const str = ref('I love You!')
 </script>
 
 <style scoped lang="scss">
 .box {
-  width: 600px;
-  height: 400px;
-  // background: black;
-  h1: {
-    color: rgb(255, 22, 22);
+  h1 {
+    font-size: 120px;
+    color: $defaultColor;
+    display: inline;
   }
 }
 </style>

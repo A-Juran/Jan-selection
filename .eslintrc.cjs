@@ -70,5 +70,8 @@ module.exports = {
     'vue/script-setup-uses-vars': 'error', //Prevent <script setup> variables used in <template> to be marked as unused
     'vue/no-mutating-props': 'off', //Disallow mutation of component props
     'vue/attribute-hyphenation': 'off', //Enforce attribute naming style on custom components in template
+
+    //other
+    '@typescript-eslint/ban-ts-comment': 'off',
   },
 }

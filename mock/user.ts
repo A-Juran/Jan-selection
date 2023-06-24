@@ -27,6 +27,7 @@ function createUserList() {
   ]
 }
 
+//对外暴露一个数组：数组里边包含两个接口。
 export default [
   // 用户登录接口
   {

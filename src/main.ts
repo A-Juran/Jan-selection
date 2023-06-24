@@ -16,6 +16,5 @@ import 'virtual:svg-icons-register'
 import globalComponet from '@/components'
 //自定义scss
 import '@/styles/index.scss'
-//安装自定义插件 使用use自动执行install方法。
 app.use(globalComponet)
 app.mount('#app')

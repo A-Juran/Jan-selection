@@ -11,18 +11,20 @@
 <script setup lang="ts">
 import { Plus, Edit, Delete } from '@element-plus/icons-vue'
 import { ref, onMounted } from 'vue'
-import request from '@/utils/request'
+import { reqLogin } from '@/api/user'
 const str = ref('I love You!')
 
+//todo
 onMounted(() => {
-  request({
-    url: '/user/login',
-    method: 'post',
-    data: {
-      username: 'admin',
-      password: '123456',
-    },
-  })
+  // request({
+  //   url: '/user/login',
+  //   method: 'post',
+  //   data: {
+  //     username: 'admin',
+  //     password: '123456',
+  //   },
+  // })
+  reqLogin({ username: 123, password: '123456' })
 })
 </script>
 

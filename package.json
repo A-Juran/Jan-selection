@@ -14,14 +14,14 @@
     "lint:eslint": "eslint src/**/*.{ts,vue} --cache --fix",
     "lint:style": "stylelint src/**/*.{css,scss,vue] --cache --fix",
     "prepare": "husky install",
-    "commitlint": "commitlint --config commitlint.config.cjs -e -V",
-    "preinstall": "node ./s cripts/preinstall.js"
+    "commitlint": "commitlint --config commitlint.config.cjs -e -V"
   },
   "dependencies": {
     "@element-plus/icons-vue": "^2.1.0",
     "axios": "^1.4.0",
     "element-plus": "^2.3.7",
     "mockjs": "^1.1.0",
+    "pinia": "2.0.34",
     "scss": "^0.2.4",
     "vite-plugin-mock": "2.9.8",
     "vue": "^3.2.47",

@@ -1,6 +1,6 @@
 import request from '../../utils/request'
 import type { loginForm, loginReturnsData, userReturnData } from './type'
-//unified interfage management
+//unified interface management
 enum API {
   LOGIN_URL = '/user/login',
   USERINFO_URL = '/user/login',

@@ -1,14 +1,14 @@
 //Login interface needs to carry parameters type.
 export interface loginForm {
-  username: String
-  password: String
+  username: string
+  password: string
 }
 interface dataType {
-  token: String
+  token: string
 }
 //Login interface returns data type.
 export interface loginReturnsData {
-  code: Number
+  code: number
   data: dataType
 }
 
@@ -17,7 +17,7 @@ export interface loginReturnsData {
  *  user information returned by the server
  * */
 export interface userReturnData {
-  code: Number
+  code: number
   data: user
 }
 
@@ -26,13 +26,13 @@ interface user {
 }
 
 interface userInfo {
-  userId: Number
-  avatar: String
-  username: String
-  password: String
-  desc: String
-  roles: Array<String>
-  buttons: Array<String>
-  routes: Array<String>
-  token: String
+  userId: number
+  avatar: string
+  username: string
+  password: string
+  desc: string
+  roles: Array<string>
+  buttons: Array<string>
+  routes: Array<string>
+  token: string
 }

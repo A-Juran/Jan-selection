@@ -101,7 +101,7 @@ const login = async () => {
       type: 'success',
       title: `Hi,${timeSharingReminder()} 欢迎回来`,
     })
-    routers.push('/home')
+    routers.push('/')
   } catch (error) {
     ElNotification({
       message: (error as Error).message,
@@ -125,7 +125,7 @@ const routers = useRouter()
     position: relative;
     height: 100vh;
     .login-form {
-      width: 40%;
+      width: 50%;
       position: absolute;
       top: 50%;
       left: 0;

@@ -3,22 +3,27 @@
     <el-row>
       <el-col :span="12" :xs="0"></el-col>
       <el-col :span="12" :xs="24" class="login-box">
-        <el-form class="login-form">
+        <el-form
+          :rules="rules"
+          :model="loginFormObject"
+          ref="loginFormref"
+          class="login-form"
+        >
           <h1>Hello</h1>
           <h2>欢迎使用Vue-Admin</h2>
-          <el-form-item>
+          <el-form-item prop="username">
             <el-input
               type="text"
               :prefix-icon="User"
-              v-model="loginForm.username"
+              v-model="loginFormObject.username"
             ></el-input>
           </el-form-item>
-          <el-form-item>
+          <el-form-item prop="password">
             <el-input
               type="password"
               :prefix-icon="Lock"
               show-password
-              v-model="loginForm.password"
+              v-model="loginFormObject.password"
             ></el-input>
           </el-form-item>
           <el-form-item>
@@ -26,7 +31,7 @@
               type="primary"
               size="default"
               class="login-button"
-              @click="login"
+              @click="submitForm(loginFormref)"
               :loading="loading"
             >
               登录
@@ -40,25 +45,61 @@
 
 <script setup lang="ts">
 import { User, Lock } from '@element-plus/icons-vue'
-import { reactive, ref } from 'vue'
+import { reactive, ref, onMounted } from 'vue'
 import useUserStore from '@/store/modules/user'
 import { ElNotification } from 'element-plus'
 import { useRouter } from 'vue-router'
+import { yiYan, timeSharingReminder } from '@/utils/welcation'
+//data type
+import type { loginForm } from '@/api/user/type'
+import type { FormRules, FormInstance } from 'element-plus'
+
 let userStore = useUserStore()
 //收集账号与密码的数据
-let loginForm = reactive({ username: '', password: '' })
-//控制按钮加载效果
-let loading = ref(false)
-//配置路由跳转
-const routers = useRouter()
+let loginFormObject = reactive<loginForm>({ username: '', password: '' })
+//表单校验||提交
+const loginFormref = ref<FormInstance>()
+const rules = reactive<FormRules<loginForm>>({
+  username: [
+    { required: true, message: 'Please input username', trigger: 'blur' },
+    { min: 4, max: 16, message: 'Length should be 4 to 6', trigger: 'blur' },
+  ],
+  password: [
+    { required: true, message: 'Please input password', trigger: 'blur' },
+    { min: 6, max: 16, message: 'Length should be 6 to 16', trigger: 'blur' },
+  ],
+})
+const submitForm = async (formEl: FormInstance | undefined) => {
+  if (!formEl) return
+  await formEl.validate((valid, fields) => {
+    if (valid) {
+      login()
+    } else {
+      let formAttr = Object.keys(fields)[0]
+      if (formAttr) {
+        ElNotification({
+          type: 'info',
+          message:
+            fields[Object.keys(fields)[0]][0].field +
+            ' ' +
+            fields[Object.keys(fields)[0]][0].message,
+        })
+      }
+    }
+  })
+}
 
+// 按钮加载效果
+let loading = ref(false)
+//登录
 const login = async () => {
   loading.value = true
   try {
-    await userStore.userLogin(loginForm)
+    await userStore.userLogin(loginFormObject)
     ElNotification({
       message: '登录成功',
       type: 'success',
+      title: `Hi,${timeSharingReminder()} 欢迎回来`,
     })
     routers.push('/home')
   } catch (error) {
@@ -70,6 +111,8 @@ const login = async () => {
     loading.value = false
   }
 }
+//配置路由跳转
+const routers = useRouter()
 </script>
 
 <style scoped lang="scss">

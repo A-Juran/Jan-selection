@@ -1,5 +1,5 @@
 <template>
-  <el-button icon="Refresh" circle />
+  <el-button icon="Refresh" @click="updateRefsh" circle />
   <el-button icon="Search" circle />
   <el-button icon="FullScreen" circle />
   <el-button icon="Setting" circle />
@@ -22,7 +22,13 @@
   </el-dropdown>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import useSettingStore from '@/store/modules/setting'
+let settingStore = useSettingStore()
+const updateRefsh = () => {
+  settingStore.refsh = !settingStore.refsh
+}
+</script>
 
 <script lang="ts">
 export default {

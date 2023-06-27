@@ -5,14 +5,8 @@
       <el-scrollbar class="scrollbar">
         <el-menu background-color="#001529" text-color="white">
           <Logo></Logo>
-          <el-menu-item index="1">Home</el-menu-item>
-          <el-menu-item index="2">Data screen</el-menu-item>
-          <el-sub-menu index="3">
-            <template #title>Rights Management</template>
-            <el-menu-item index="3-1">User Management</el-menu-item>
-            <el-menu-item index="3-2">Role Management</el-menu-item>
-            <el-menu-item index="3-3">Menu Management</el-menu-item>
-          </el-sub-menu>
+          <!-- 根据路由动态生成菜单。 -->
+          <Menu :menuList="userStore.menuRoutes"></Menu>
         </el-menu>
       </el-scrollbar>
     </div>
@@ -27,6 +21,9 @@
 
 <script setup lang="ts">
 import Logo from './logo'
+import Menu from './menu'
+import useUserStore from '../store/modules/user'
+let userStore = useUserStore()
 </script>
 
 <style scoped lang="scss">
@@ -45,6 +42,9 @@ import Logo from './logo'
       height: calc(
         100vh - #{$layout-slider-menu-logo-width-height} - #{$layout-slider-menu-item-height}
       );
+      .el-menu {
+        border-right: none;
+      }
     }
   }
   .layout_tabbar {

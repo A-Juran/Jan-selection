@@ -4,6 +4,7 @@ import { reqLogin } from '@/api/user'
 import type { loginForm, loginReturnsData } from '@/api/user/type'
 import type { UserState } from './types/types'
 import { SET_TOKEN, GET_TOKEN } from '@/utils/token'
+import { constantRoute } from '../../router/routers'
 
 //create user small warehouses
 const useUserStore = defineStore('User', {
@@ -11,6 +12,7 @@ const useUserStore = defineStore('User', {
   state: (): UserState => {
     return {
       token: GET_TOKEN(),
+      menuRoutes: constantRoute,
     }
   },
   //

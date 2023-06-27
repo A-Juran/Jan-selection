@@ -2,16 +2,22 @@
   <div class="layout_contianer">
     <!-- 左侧菜单 -->
     <div class="layout_slider">
+      <Logo></Logo>
       <el-scrollbar class="scrollbar">
-        <el-menu background-color="#001529" text-color="white">
-          <Logo></Logo>
+        <el-menu
+          :default-active="$route.path"
+          background-color="#001529"
+          text-color="white"
+        >
           <!-- 根据路由动态生成菜单。 -->
           <Menu :menuList="userStore.menuRoutes"></Menu>
         </el-menu>
       </el-scrollbar>
     </div>
     <!-- 顶部菜单 -->
-    <div class="layout_tabbar">1</div>
+    <div class="layout_tabbar">
+      <tab-bar></tab-bar>
+    </div>
     <!-- 内容展示 -->
     <div class="layout_main">
       <Main></Main>
@@ -22,9 +28,14 @@
 <script setup lang="ts">
 import Logo from './logo/index.vue'
 import Menu from './menu/index.vue'
+import TabBar from './tabbar/index.vue'
 import Main from './main/index.vue'
 import useUserStore from '../store/modules/user'
+//router
+import { useRoute } from 'vue-router'
 let userStore = useUserStore()
+let $route = useRoute()
+console.log($route)
 </script>
 
 <style scoped lang="scss">
@@ -51,7 +62,7 @@ let userStore = useUserStore()
   .layout_tabbar {
     position: absolute;
     width: calc(100% - #{$layout-slider-menu-width});
-    height: $layout-tabbar-height;
+    // height: $layout-tabbar-height;
     background-color: $layout-tabbar-back-color;
     top: 0;
     left: $layout-slider-menu-width;
@@ -66,7 +77,7 @@ let userStore = useUserStore()
     background-color: $layout-main-back-color;
     top: $layout-tabbar-height;
     left: $layout-slider-menu-width;
-    padding: 1.25rem;
+    padding: $layout-main-padding;
     overflow: auto;
     box-sizing: border-box;
   }

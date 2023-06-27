@@ -10,7 +10,7 @@
         </el-menu>
       </el-scrollbar>
     </div>
-    <!-- 右侧菜单 -->
+    <!-- 顶部菜单 -->
     <div class="layout_tabbar">1</div>
     <!-- 内容展示 -->
     <div class="layout_main">

@@ -21,6 +21,7 @@
       <el-menu-item
         v-show="!item.children[0].meta.hidden"
         :index="item.children[0].path"
+        @click="goRoute"
       >
         <template #title>
           <el-icon>
@@ -47,9 +48,13 @@
 
 <script setup lang="ts">
 defineProps(['menuList'])
+// route
+import { useRouter } from 'vue-router'
+let $router = useRouter()
 //菜单回调
 const goRoute = (vc) => {
-  console.log(vc)
+  console.log(vc.index)
+  $router.push(vc.index)
 }
 </script>
 <script lang="ts">

@@ -14,14 +14,15 @@
     <div class="layout_tabbar">1</div>
     <!-- 内容展示 -->
     <div class="layout_main">
-      <router-view></router-view>
+      <Main></Main>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import Logo from './logo'
-import Menu from './menu'
+import Logo from './logo/index.vue'
+import Menu from './menu/index.vue'
+import Main from './main/index.vue'
 import useUserStore from '../store/modules/user'
 let userStore = useUserStore()
 </script>

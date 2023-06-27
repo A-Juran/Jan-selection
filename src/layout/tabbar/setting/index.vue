@@ -8,7 +8,6 @@
       <el-image
         style="width: 32px; height: 32px"
         src="http://q1.qlogo.cn/g?b=qq&nk=21171326&s=640"
-        fit="fit"
       />
       admin
       <el-icon class="el-icon--right">
@@ -24,5 +23,11 @@
 </template>
 
 <script setup lang="ts"></script>
+
+<script lang="ts">
+export default {
+  name: 'Setting',
+}
+</script>
 
 <style scoped></style>

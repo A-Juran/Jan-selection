@@ -1,12 +1,20 @@
 <template>
   <div class="logo" v-if="!setting.logoHidden">
     <img :src="setting.logo" alt="" />
-    <p>{{ setting.title }}</p>
+    <p v-if="!settingStore.GET_IS_COLLPASE">{{ setting.title }}</p>
   </div>
 </template>
 
 <script setup lang="ts">
 import setting from '@/setting'
+import useSettingStore from '@/store/modules/setting'
+let settingStore = useSettingStore()
+</script>
+
+<script lang="ts">
+export default {
+  name: 'Logo',
+}
 </script>
 
 <style scoped lang="scss">
@@ -16,7 +24,6 @@ import setting from '@/setting'
   align-items: center;
   height: $layout-slider-menu-item-height;
   justify-content: center;
-  box-sizing: border-box;
   img {
     width: $layout-slider-menu-logo-width-height;
     height: $layout-slider-menu-logo-width-height;
@@ -25,6 +32,7 @@ import setting from '@/setting'
     color: $layout-slider-menu-logo-title-color;
     font-size: $layout-slider-menu-logo-title-fontSize;
     margin-left: 0.625rem;
+    display: block;
   }
 }
 </style>

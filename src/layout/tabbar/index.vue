@@ -15,6 +15,12 @@ import BreadCrumb from './breadcrumb/index.vue'
 import Setting from './setting/index.vue'
 </script>
 
+<script lang="ts">
+export default {
+  name: 'TabBar',
+}
+</script>
+
 <style lang="scss">
 .tabbar_container {
   width: 100%;

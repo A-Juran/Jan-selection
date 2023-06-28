@@ -3,14 +3,13 @@ export interface loginForm {
   username: string
   password: string
 }
-interface dataType {
-  token: string,
-  message: string
-}
+
 //Login interface returns data type.
 export interface loginReturnsData {
   code: number
-  data: dataType
+  data: string
+  message: string
+  ok: boolean
 }
 
 /**

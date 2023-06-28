@@ -1,12 +1,17 @@
 import request from '../../utils/request'
-import type { loginForm, loginReturnsData, userReturnData } from './type'
+
 //unified interface management
 enum API {
-  LOGIN_URL = '/user/login',
-  USERINFO_URL = '/user/info',
+  LOGIN_URL = '/admin/acl/index/login',
+  GET_USERINFO_URL = '/admin/acl/index/info',
+  LOGINOUT_URL = '/admin/acl/index/logout'
 }
+
 //login method
-export const reqLogin = (data: loginForm) =>
-  request.post<any, loginReturnsData>(API.LOGIN_URL, data)
-//get userInfo
-export const reqUserInfo = () => request.get<any, userReturnData>(API.USERINFO_URL)
+export const reqLogin = (data: any) => request.post<any, any>(API.LOGIN_URL, data);
+
+//get User Info
+export const reqUserInfo = () => request.get<any, any>(API.GET_USERINFO_URL);
+
+//loginout
+export const userLoginOut = () => request.post<any, any>(API.LOGINOUT_URL);

@@ -1,7 +1,11 @@
 //create user related warehouses
 import { defineStore } from 'pinia'
-import { reqLogin, reqUserInfo } from '@/api/user'
-import type { loginForm, loginReturnsData, userReturnData } from '@/api/user/type'
+import { reqLogin, reqUserInfo, userLoginOut } from '@/api/user'
+import type {
+  loginForm,
+  loginReturnsData,
+  userReturnData,
+} from '@/api/user/type'
 import type { UserState } from './types/types'
 import { SET_TOKEN, GET_TOKEN, REMOVE_TOKEN } from '@/utils/token'
 import { constantRoute } from '@/router/routers'
@@ -23,30 +27,38 @@ const useUserStore = defineStore('User', {
       const result: loginReturnsData = await reqLogin(data)
       //login success
       if (result.code == 200 && result != null) {
-        this.token = result.data.token as string
-        SET_TOKEN(result.data.token as string)
+        this.token = result.data
+        SET_TOKEN(result.data)
         return Promise.resolve('ok')
       }
       //login fail
-      return Promise.reject(new Error(result.data.message))
+      return Promise.reject(new Error(result.message))
     },
     //获取用户信息
     async getUserInfo() {
       //获取用户信息进行存储。
-      const result: userReturnData = await reqUserInfo()
+      const result: any = await reqUserInfo()
+      console.log(result);
+
       if (result.code == 200 && result !== null) {
-        this.loginUserInfo = result.data.checkUser
-        return Promise.resolve('ok');
+        this.loginUserInfo['username'] = result.data.name;
+        this.loginUserInfo['avatar'] = result.data.avatar;
+        return Promise.resolve('ok')
       }
-      return Promise.reject(new Error(result.data.message))
+      return Promise.reject(new Error(result.message))
     },
     //退出登录
-    userLoginOut() {
+    async userLoginOut() {
       //通知后端退出
-      //清除本地信息
-      this.token = ''
-      this.loginUserInfo = {}
-      REMOVE_TOKEN()
+      let result = await userLoginOut();
+      if (result.code === 200) {
+        //清除本地信息
+        this.token = ''
+        this.loginUserInfo = {}
+        REMOVE_TOKEN()
+        return Promise.resolve('ok')
+      }
+      return Promise.reject(new Error(result.message))
     },
   },
   //

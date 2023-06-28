@@ -5,10 +5,7 @@
   <el-button icon="Setting" circle />
   <el-dropdown>
     <span class="el-dropdown-link">
-      <el-image
-        style="width: 32px; height: 32px"
-        src="http://q1.qlogo.cn/g?b=qq&nk=21171326&s=640"
-      />
+      <el-image style="width: 32px; height: 32px" :src="userStore.loginUserInfo.avatar" />
       {{ userStore.loginUserInfo.username }}
       <el-icon class="el-icon--right">
         <arrow-down />
@@ -25,6 +22,7 @@
 <script setup lang="ts">
 import useSettingStore from '@/store/modules/setting'
 import useUserStore from '@/store/modules/user'
+import { ElMessage } from 'element-plus'
 import { useRouter, useRoute } from 'vue-router'
 //创建对象变量
 let settingStore = useSettingStore()
@@ -48,11 +46,22 @@ const fullScreen = () => {
   }
 }
 //退出
-const loginOut = () => {
+const loginOut = async () => {
   //向服务端请求退出
   //清除本地Token||UserInfo
-  userStore.userLoginOut()
-  //跳转登录页
+  try {
+    await userStore.userLoginOut();
+    ElMessage({
+      type: 'success',
+      message: '退出成功'
+    })
+    //跳转登录页
+  } catch (error) {
+    ElMessage({
+      type: 'error',
+      message: '退出失败'
+    })
+  }
   $router.push({ path: '/login', query: { redirect: $route.path } })
 }
 </script>

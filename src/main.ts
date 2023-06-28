@@ -12,6 +12,7 @@ import globalComponet from './components'
 import '@/styles/index.scss'
 //引入路由
 import router from './router'
+import './permisstion'
 //引入pinia
 import pinia from './store'
 //创建应用实例对象

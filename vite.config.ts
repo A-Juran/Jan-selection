@@ -2,7 +2,6 @@ import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import { createSvgIconsPlugin } from 'vite-plugin-svg-icons'
 import path from 'path'
-const resolve = (dir) => path.resolve(__dirname, dir)
 // https://vitejs.dev/config/
 //vite-plugin-mock(本地和产品模拟/package/vite-plugin-mock/v/2.9.8)
 import { viteMockServe } from 'vite-plugin-mock'
@@ -33,7 +32,7 @@ export default defineConfig(({ command }) => {
     },
     resolve: {
       alias: {
-        '@': resolve('src'),
+        '@': path.resolve(__dirname, 'src'),
       },
       extensions: ['.mjs', '.js', '.ts', '.jsx', '.tsx', '.json', '.vue'],
     },

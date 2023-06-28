@@ -1,5 +1,6 @@
+import { RouteRecordRaw } from 'vue-router'
 //confinguration routering path.
-export const constantRoute = [
+export const constantRoute: RouteRecordRaw[] = [
   {
     path: '/login',
     name: 'login',

@@ -1,5 +1,5 @@
 import { RouteRecordRaw } from 'vue-router'
-import type { userInfo } from '@/api/user'
+import type { userInfo } from '@/api/user/type'
 
 export interface UserState {
   token: string | null

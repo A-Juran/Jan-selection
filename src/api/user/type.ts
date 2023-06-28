@@ -4,7 +4,8 @@ export interface loginForm {
   password: string
 }
 interface dataType {
-  token: string
+  token: string,
+  message: string
 }
 //Login interface returns data type.
 export interface loginReturnsData {
@@ -22,10 +23,11 @@ export interface userReturnData {
 }
 
 interface user {
+  message: string
   checkUser: userInfo
 }
 
-interface userInfo {
+export interface userInfo {
   userId: number
   avatar: string
   username: string

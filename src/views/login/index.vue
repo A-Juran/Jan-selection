@@ -48,12 +48,14 @@ import { User, Lock } from '@element-plus/icons-vue'
 import { reactive, ref, onMounted } from 'vue'
 import useUserStore from '@/store/modules/user'
 import { ElNotification } from 'element-plus'
-import { useRouter } from 'vue-router'
+import { useRouter, useRoute } from 'vue-router'
 import { yiYan, timeSharingReminder } from '@/utils/welcation'
 //data type
 import type { loginForm } from '@/api/user/type'
 import type { FormRules, FormInstance } from 'element-plus'
-
+//定义对象
+let $router = useRouter()
+let $route = useRoute()
 let userStore = useUserStore()
 //收集账号与密码的数据
 let loginFormObject = reactive<loginForm>({ username: '', password: '' })
@@ -101,7 +103,9 @@ const login = async () => {
       type: 'success',
       title: `Hi,${timeSharingReminder()} 欢迎回来`,
     })
-    routers.push('/')
+    //获取跳转地址
+    let redirectUrl = $route.query.redirect
+    $router.push({ path: (redirectUrl || '') as string })
   } catch (error) {
     ElNotification({
       message: (error as Error).message,
@@ -111,8 +115,6 @@ const login = async () => {
     loading.value = false
   }
 }
-//配置路由跳转
-const routers = useRouter()
 </script>
 
 <style scoped lang="scss">

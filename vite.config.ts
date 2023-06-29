@@ -6,8 +6,8 @@ import path from 'path'
 //vite-plugin-mock(本地和产品模拟/package/vite-plugin-mock/v/2.9.8)
 import { viteMockServe } from 'vite-plugin-mock'
 export default defineConfig(({ command, mode }) => {
-  //获取各个环境下对应的环境对象
-  let env: Record<string, string> = loadEnv(mode, process.cwd());
+  //获取对应的环境对象
+  let env: Record<string, string> = loadEnv(mode, process.cwd())
   console.log(env)
   return {
     plugins: [
@@ -49,8 +49,8 @@ export default defineConfig(({ command, mode }) => {
           changeOrigin: true,
           //路径重写规则
           rewrite: (path) => path.replace(/^\/api/, ''),
-        }
-      }
-    }
+        },
+      },
+    },
   }
 })

@@ -51,17 +51,17 @@ import { ElNotification } from 'element-plus'
 import { useRouter, useRoute } from 'vue-router'
 import { yiYan, timeSharingReminder } from '@/utils/welcation'
 //data type
-import type { loginForm } from '@/api/user/type'
+import type { loginFormData } from '@/api/user/type'
 import type { FormRules, FormInstance } from 'element-plus'
 //定义对象
 let $router = useRouter()
 let $route = useRoute()
 let userStore = useUserStore()
 //收集账号与密码的数据
-let loginFormObject = reactive<loginForm>({ username: '', password: '' })
+let loginFormObject = reactive<loginFormData>({ username: '', password: '' })
 //表单校验||提交
 const loginFormref = ref<FormInstance>()
-const rules = reactive<FormRules<loginForm>>({
+const rules = reactive<FormRules<loginFormData>>({
   username: [
     { required: true, message: 'Please input username', trigger: 'blur' },
     { min: 4, max: 16, message: 'Length should be 4 to 6', trigger: 'blur' },
@@ -71,6 +71,7 @@ const rules = reactive<FormRules<loginForm>>({
     { min: 6, max: 16, message: 'Length should be 6 to 16', trigger: 'blur' },
   ],
 })
+
 const submitForm = async (formEl: FormInstance | undefined) => {
   if (!formEl) return
   await formEl.validate((valid, fields) => {
@@ -115,6 +116,7 @@ const login = async () => {
     loading.value = false
   }
 }
+
 </script>
 
 <style scoped lang="scss">

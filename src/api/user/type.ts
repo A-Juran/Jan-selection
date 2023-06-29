@@ -1,39 +1,29 @@
 //Login interface needs to carry parameters type.
-export interface loginForm {
+export interface loginFormData {
   username: string
   password: string
 }
 
-//Login interface returns data type.
-export interface loginReturnsData {
-  code: number
-  data: string
-  message: string
+//define all intereface reture data type ts 
+export interface ResPoneseData {
+  code: number,
+  message: string,
   ok: boolean
 }
 
-/**
- * define the data types related to
- *  user information returned by the server
- * */
-export interface userReturnData {
-  code: number
-  data: user
+
+//Login interface returns data type.
+export interface loginResponseData extends ResPoneseData {
+  data: string
 }
 
-interface user {
-  message: string
-  checkUser: userInfo
-}
-
-export interface userInfo {
-  userId: number
-  avatar: string
-  username: string
-  password: string
-  desc: string
-  roles: Array<string>
-  buttons: Array<string>
-  routes: Array<string>
-  token: string
+//get UserInfo returns data type.
+export interface userInfoResponseData extends ResPoneseData {
+  data: {
+    name: string,
+    avatar: string[]
+    roles: string[],
+    routes: string[],
+    buttons: string[],
+  }
 }

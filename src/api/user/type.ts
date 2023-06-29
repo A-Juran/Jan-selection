@@ -1,4 +1,4 @@
-import type { ResPoneseData } from '@/api/commonTypes';
+import type { ResPoneseData } from '@/api/commonTypes'
 //Login interface needs to carry parameters type.
 export interface loginFormData {
   username: string

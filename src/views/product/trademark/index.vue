@@ -9,7 +9,7 @@
         <el-table-column prop="tmName" label="品牌名称" />
         <el-table-column prop="logoUrl" label="品牌Logo">
           <template #default="{ row, index }">
-            <el-image style="width: 50px; height: 50px; border-radius: 50%;"
+            <el-image style="width: 50px; height: 50px; border-radius: 50%"
               :src="logoUrlMakeUP(row.logoUrl, 0, 'http://')" fit="cover" />
           </template>
         </el-table-column>
@@ -36,21 +36,25 @@
 //引入函数
 import { ref, onMounted, watch } from 'vue'
 import { getTradeMarkInfo } from '@/api/product/trademark'
-import { TradeMarkResponseDataType, Records } from '@/api/product/trademark/type'
+import {
+  TradeMarkResponseDataType,
+  Records,
+} from '@/api/product/trademark/type'
 //定义变量
 let pageNo = ref<number>(1)
 let limit = ref<number>(5)
 let total = ref<number>(0)
 let records = ref<Records>([])
 //获取品牌数据函数
-const getHasTradeMarkInfo = async (pager = 1) => {
-  pageNo.value = pager
-  let result: TradeMarkResponseDataType = await getTradeMarkInfo(pageNo.value, limit.value)
+const getHasTradeMarkInfo = async () => {
+  let result: TradeMarkResponseDataType = await getTradeMarkInfo(
+    pageNo.value,
+    limit.value,
+  )
   if (result.code === 200) {
     total.value = result.data.total
     records.value = result.data.records
   }
-
 }
 //组件挂载完毕钩子
 onMounted(() => {
@@ -58,14 +62,13 @@ onMounted(() => {
 })
 
 const logoUrlMakeUP = (url: string, pos: number, str: string) => {
-  if (!urlContainHttpStr(url))
-    return insertStr(url, pos, str)
+  if (!urlContainHttpStr(url)) return insertStr(url, pos, str)
   return url
 }
 
 //为字符串插入字符 其中soure为原字符串,start为将要插入字符的位置，newStr为要插入的字符
 const insertStr = (soure: string, start: number, newStr: string) => {
-  return soure.slice(0, start) + newStr + soure.slice(start);
+  return soure.slice(0, start) + newStr + soure.slice(start)
 }
 
 //检测是否出现http
@@ -74,7 +77,6 @@ const urlContainHttpStr = (str: string) => {
   const v = str.match(regex)
   return v ? true : false
 }
-
 
 /**
  * size-change、current-change
@@ -103,6 +105,7 @@ watch(pageNo, (newVal) => {
 })
 
 watch(limit, (newVal) => {
+  pageNo.value = 1;
   getHasTradeMarkInfo()
 })
 </script>

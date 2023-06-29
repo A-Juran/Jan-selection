@@ -1,16 +1,9 @@
+import type { ResPoneseData } from '@/api/commonTypes';
 //Login interface needs to carry parameters type.
 export interface loginFormData {
   username: string
   password: string
 }
-
-//define all intereface reture data type ts 
-export interface ResPoneseData {
-  code: number,
-  message: string,
-  ok: boolean
-}
-
 
 //Login interface returns data type.
 export interface loginResponseData extends ResPoneseData {
@@ -20,10 +13,10 @@ export interface loginResponseData extends ResPoneseData {
 //get UserInfo returns data type.
 export interface userInfoResponseData extends ResPoneseData {
   data: {
-    name: string,
+    name: string
     avatar: string[]
-    roles: string[],
-    routes: string[],
-    buttons: string[],
+    roles: string[]
+    routes: string[]
+    buttons: string[]
   }
 }

@@ -2,8 +2,9 @@
 //自定义组件文件
 import SvgIcon from '@/components/SvgIcon/index.vue'
 import * as ElementPlusIconsVue from '@element-plus/icons-vue'
+import Category from './Category/index.vue'
 //全局对象
-const allGloablComponent = { SvgIcon, ElementPlusIconsVue }
+const allGloablComponent = { Category, SvgIcon, ElementPlusIconsVue }
 const assingObject = {}
 //不是对象进行合并处理
 const assignComponentObject = (oldObject, newObject) => {

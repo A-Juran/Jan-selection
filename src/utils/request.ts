@@ -37,7 +37,7 @@ request.interceptors.response.use(
   function (error) {
     // 超出 2xx 范围的状态码都会触发该函数。
     let message = ''
-    const status = error.response.status
+    const status = error.response.code
     switch (status) {
       case 401:
         message = 'Token 过期'

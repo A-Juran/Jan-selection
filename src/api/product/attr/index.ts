@@ -4,7 +4,7 @@ import type {
   categoryResponseDataType,
   topClassDataType,
   topClassData,
-  categoryAttrResDT
+  categoryAttrResDT,
 } from './type'
 
 //枚举请求接口
@@ -58,7 +58,13 @@ export const getAttrTopClass = () =>
  * @param c1 一级分类标识
  * @param c2 二级分类标识
  * @param c3 三级分类标识
- * @returns 
+ * @returns
  */
-export const getCategoryAttrVale = (c1: string | number, c2: string | number, c3: string | number) =>
-  request.get<any, categoryAttrResDT>(API.GET_CATEGORY_ATTR_VALUE_URL + `/${c1}/${c2}/${c3}`);
+export const getCategoryAttrVale = (
+  c1: string | number,
+  c2: string | number,
+  c3: string | number,
+) =>
+  request.get<any, categoryAttrResDT>(
+    API.GET_CATEGORY_ATTR_VALUE_URL + `/${c1}/${c2}/${c3}`,
+  )
